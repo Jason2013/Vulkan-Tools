@@ -42,6 +42,9 @@
 #ifdef _WIN32
 #pragma comment(linker, "/subsystem:windows")
 #define APP_NAME_STR_LEN 80
+
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #endif  // _WIN32
 
 #ifdef ANDROID
@@ -3767,6 +3770,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
     bool done;  // flag saying when app is complete
     int argc;
     char **argv;
+
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
     // Ensure wParam is initialized.
     msg.wParam = 0;
